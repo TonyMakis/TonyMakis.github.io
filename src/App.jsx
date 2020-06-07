@@ -1,8 +1,9 @@
 /* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
-import './App.css';
-import UserCard from './UserCard';
+
+import ProjectCard from './ProjectCardComponent/ProjectCard';
+
 import fetchExtras from './dataFunctions';
 
 export default function App() {
@@ -11,6 +12,10 @@ export default function App() {
   useEffect(() => {
     const fetchProjects = async (url) => fetch(url)
       .then((res) => res.json())
+      // Uncomment next line and comment 2 after
+      // => to fetch ONLY the main repo data, not the discovered
+      //    git commit, contributors, and languages data it links
+      // .then((res) => setProjectData(res));
       .then((res) => fetchExtras(res)
         .then((data) => setProjectData(data)));
 
@@ -21,24 +26,24 @@ export default function App() {
 
   return (
     <div className="App">
-      <h1>My Projects</h1>
+      <h1>My Public Projects</h1>
       <Grid
         container
-        spacing={10}
-        style={{ padding: '2em' }}
+        style={{ padding: '0.5em' }}
       >
         {projectData.map((projects) => (
           <Grid
             item
+            style={{ padding: '2em' }}
             // Tell each card how many cols to span / device size
             xs={12}
-            sm={6}
-            md={4}
+            sm={12}
+            md={6}
             lg={4}
             xl={3}
             key={projects.id}
           >
-            <UserCard
+            <ProjectCard
               title={projects.name}
               description={projects.description}
               projectUrl={projects.html_url}

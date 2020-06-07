@@ -1,5 +1,6 @@
 body {
   background-color:#30336b;
+  text-align:center;
   color:white;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -9,6 +10,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 /* Hide scrollbar for IE and Edge */
   -ms-overflow-style: none;
+  align-items: center;
 }
 
 h1 {
