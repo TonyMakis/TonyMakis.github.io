@@ -5,6 +5,7 @@ import {
   ExpansionPanel,
   ExpansionPanelDetails,
   ExpansionPanelSummary,
+  Link,
   Typography,
 } from '@material-ui/core';
 
@@ -43,7 +44,15 @@ export default function CustomExpansionPanels({ contributors }) {
         <ExpansionPanelDetails className={classes.beautifyBackground} align="left">
           <ul>
             {contributors.map((contrib) => (
-              <li><Typography component="h4"><em>{contrib}</em></Typography></li>
+              <li>
+                <Link
+                  href={`https://github.com/${contrib}`}
+                  color="inherit"
+                  target="_blank"
+                >
+                  {contrib}
+                </Link>
+              </li>
             )) || 'No contributors found!'}
           </ul>
         </ExpansionPanelDetails>
