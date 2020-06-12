@@ -14,9 +14,15 @@ import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 import TrackChangesIcon from '@material-ui/icons/TrackChanges';
 import CodeIcon from '@material-ui/icons/Code';
 
+import { PieChart } from 'react-minimal-pie-chart';
+import { formatCommitsToPieData, formatLangsImgData } from '../dataFormatting';
 import useStyles from './CustomExpansionPanelsStyles';
 
-export default function CustomExpansionPanels({ contributors }) {
+export default function CustomExpansionPanels({
+  contributors,
+  commits,
+  languagesUsed,
+}) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -44,13 +50,13 @@ export default function CustomExpansionPanels({ contributors }) {
         <ExpansionPanelDetails className={classes.beautifyBackground} align="left">
           <ul>
             {contributors.map((contrib) => (
-              <li>
+              <li key={contrib.id}>
                 <Link
-                  href={`https://github.com/${contrib}`}
+                  href={`https://github.com/${contrib.user}`}
                   color="inherit"
                   target="_blank"
                 >
-                  {contrib}
+                  {contrib.user}
                 </Link>
               </li>
             )) || 'No contributors found!'}
@@ -69,13 +75,15 @@ export default function CustomExpansionPanels({ contributors }) {
         >
           <Typography className={classes.heading}><TrackChangesIcon /></Typography>
           <Typography className={classes.secondaryHeading}>
-            <strong>Commit Info</strong>
+            <strong>Commits By Contributor</strong>
           </Typography>
         </ExpansionPanelSummary>
-        <ExpansionPanelDetails className={classes.beautifyBackground} align="left">
-          <Typography>
-            Donec placerat,
-          </Typography>
+        <ExpansionPanelDetails className={classes.beautifyBackground} align="center">
+          <PieChart
+            className={classes.piechart}
+            data={formatCommitsToPieData(commits)}
+            label={({ dataEntry }) => `${dataEntry.title}, ${dataEntry.value}`}
+          />
         </ExpansionPanelDetails>
       </ExpansionPanel>
       <ExpansionPanel
@@ -95,7 +103,9 @@ export default function CustomExpansionPanels({ contributors }) {
         </ExpansionPanelSummary>
         <ExpansionPanelDetails className={classes.beautifyBackground} align="left">
           <Typography>
-            Nunc vitae
+            {formatLangsImgData(languagesUsed).map((langUrl) => (
+              <img className={classes.langBadge} alt={langUrl} src={langUrl} />
+            ))}
           </Typography>
         </ExpansionPanelDetails>
       </ExpansionPanel>
@@ -104,9 +114,13 @@ export default function CustomExpansionPanels({ contributors }) {
 }
 
 CustomExpansionPanels.propTypes = {
-  contributors: PropTypes.arrayOf(PropTypes.string),
+  contributors: PropTypes.arrayOf(PropTypes.object),
+  commits: PropTypes.arrayOf(PropTypes.object),
+  languagesUsed: PropTypes.arrayOf(PropTypes.object),
 };
 
 CustomExpansionPanels.defaultProps = {
   contributors: [],
+  commits: [],
+  languagesUsed: [],
 };

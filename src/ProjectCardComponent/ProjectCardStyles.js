@@ -14,7 +14,6 @@ export default useStyles = makeStyles({
     // },
   },
   paperBack: {
-    fontWeight: 'bold',
     background: 'linear-gradient(45deg, #5edf4d96, #58ccdc)',
     borderRadius: 16,
     padding: '0.8em',

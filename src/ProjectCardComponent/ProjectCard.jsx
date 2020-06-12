@@ -20,7 +20,7 @@ import useStyles from './ProjectCardStyles';
 import CustomizedExpansionPanels from '../ExpansionPanelsComponent/CustomExpansionPanels';
 
 export default function ProjectCard({
-  title, description, projectUrl, contributors, created,
+  title, description, projectUrl, languagesUsed, contributors, commits, created,
 }) {
   const classes = useStyles();
 
@@ -41,13 +41,14 @@ export default function ProjectCard({
           </Typography>
           <br />
           <Typography component="h3">
-            <strong className={classes.coloredArrowEmoji}>{'⮞ '}</strong>
             {'📅 '}
             <strong>
               <em>
-                {`${created.toLocaleString('default', { month: 'long' })}
+                {`
+                  ${created.toLocaleString('default', { month: 'long' })}
                   ${created.getDate()},
-                  ${created.getFullYear()}`}
+                  ${created.getFullYear()}
+                `}
               </em>
             </strong>
             {/* &emsp;
@@ -92,7 +93,11 @@ export default function ProjectCard({
         image={imageUrl}
       /> */}
       {/* <TabPanelsGroup contributors={contributors} /> */}
-      <CustomizedExpansionPanels contributors={contributors} />
+      <CustomizedExpansionPanels
+        contributors={contributors}
+        commits={commits}
+        languagesUsed={languagesUsed}
+      />
     </Card>
   );
 }
@@ -104,7 +109,9 @@ ProjectCard.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
   projectUrl: PropTypes.string,
-  contributors: PropTypes.arrayOf(PropTypes.string),
+  languagesUsed: PropTypes.arrayOf(PropTypes.object),
+  contributors: PropTypes.arrayOf(PropTypes.object),
+  commits: PropTypes.arrayOf(PropTypes.object),
   created: PropTypes.instanceOf(Date),
 };
 
@@ -112,6 +119,8 @@ ProjectCard.defaultProps = {
   title: '',
   description: '',
   projectUrl: '',
+  languagesUsed: [],
   contributors: [],
+  commits: [],
   created: new Date(),
 };

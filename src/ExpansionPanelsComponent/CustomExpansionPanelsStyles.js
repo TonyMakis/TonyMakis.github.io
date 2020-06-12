@@ -14,6 +14,20 @@ export default useStyles = makeStyles((theme) => ({
     boxShadow: `0 4px 8px 0 rgba(0, 0, 0, 0.2), 
                 0 6px 20px 0 rgba(0, 0, 0, 0.4)`,
   },
+  langBadge: {
+    boxShadow: `0 4px 8px 0 rgba(0, 0, 0, 0.2), 
+    0 6px 20px 0 rgba(0, 0, 0, 0.4)`,
+  },
+  piechart: {
+    width: '50%',
+    borderRadius: '100%',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    fontSize: '0.3em',
+    fontWeight: 'bold',
+    boxShadow: `0 4px 8px 0 rgba(0, 0, 0, 0.2), 
+    0 6px 20px 0 rgba(0, 0, 0, 0.4)`,
+  },
   heading: {
     textShadow: '1px 1px 0px rgba(0,0,0,0.2)',
     fontSize: theme.typography.pxToRem(15),

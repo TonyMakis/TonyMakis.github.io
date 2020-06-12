@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 
 import ProjectCard from './ProjectCardComponent/ProjectCard';
 
-import fetchExtras from './dataFunctions';
+import fetchExtras from './dataFetchFunctions';
 
 export default function App() {
   const [projectData, setProjectData] = useState([]);
@@ -31,7 +31,7 @@ export default function App() {
         container
         style={{ padding: '0.5em' }}
       >
-        {projectData.map((projects) => (
+        {projectData.map((project) => (
           <Grid
             item
             style={{ padding: '2em' }}
@@ -41,17 +41,17 @@ export default function App() {
             md={6}
             lg={4}
             xl={3}
-            key={projects.id}
+            key={project.id}
           >
             <ProjectCard
-              title={projects.name}
-              description={projects.description}
-              projectUrl={projects.html_url}
-              languagesUsed={projects.langs}
-              contributors={projects.contribs}
-              commits={projects.commits}
-              created={new Date(projects.created_at)}
-              key={projects.id}
+              title={project.name}
+              description={project.description}
+              projectUrl={project.html_url}
+              languagesUsed={project.langs}
+              contributors={project.contribs}
+              commits={project.commits}
+              created={new Date(project.created_at)}
+              key={project.id}
             />
           </Grid>
         ))}
