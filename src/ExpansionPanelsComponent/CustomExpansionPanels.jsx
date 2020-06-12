@@ -14,7 +14,7 @@ import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 import TrackChangesIcon from '@material-ui/icons/TrackChanges';
 import CodeIcon from '@material-ui/icons/Code';
 
-import { PieChart } from 'react-minimal-pie-chart';
+import { HorizontalBar } from 'react-chartjs-2';
 import { formatCommitsToPieData, formatLangsImgData } from '../dataFormatting';
 import useStyles from './CustomExpansionPanelsStyles';
 
@@ -25,6 +25,12 @@ export default function CustomExpansionPanels({
 }) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
+  const barLegendOpts = {
+    display: false,
+  };
+  const barChartOptions = {
+    showLines: false,
+  };
 
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
@@ -75,14 +81,15 @@ export default function CustomExpansionPanels({
         >
           <Typography className={classes.heading}><TrackChangesIcon /></Typography>
           <Typography className={classes.secondaryHeading}>
-            <strong>Commits By Contributor</strong>
+            <strong>Commit Info</strong>
           </Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails className={classes.beautifyBackground} align="center">
-          <PieChart
-            className={classes.piechart}
+          <HorizontalBar
+            styles={{ color: 'white !important' }}
+            legend={barLegendOpts}
+            options={barChartOptions}
             data={formatCommitsToPieData(commits)}
-            label={({ dataEntry }) => `${dataEntry.title}, ${dataEntry.value}`}
           />
         </ExpansionPanelDetails>
       </ExpansionPanel>
