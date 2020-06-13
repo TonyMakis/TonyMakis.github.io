@@ -26,13 +26,7 @@ export default function CustomExpansionPanels({
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   const barLegendOpts = {
-    display: true,
-    position: 'right',
-    // "fullWidth": true,
-    // "reverse": false,
-    labels: {
-      fontColor: 'rgb(255, 255, 255)',
-    },
+    display: false,
   };
   const barChartOptions = {
     showLines: false,
