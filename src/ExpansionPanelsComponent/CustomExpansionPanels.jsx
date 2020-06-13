@@ -14,7 +14,7 @@ import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 import TrackChangesIcon from '@material-ui/icons/TrackChanges';
 import CodeIcon from '@material-ui/icons/Code';
 
-import { HorizontalBar } from 'react-chartjs-2';
+import { Doughnut } from 'react-chartjs-2';
 import { formatCommitsToPieData, formatLangsImgData } from '../dataFormatting';
 import useStyles from './CustomExpansionPanelsStyles';
 
@@ -26,7 +26,13 @@ export default function CustomExpansionPanels({
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   const barLegendOpts = {
-    display: false,
+    display: true,
+    position: 'right',
+    // "fullWidth": true,
+    // "reverse": false,
+    labels: {
+      fontColor: 'rgb(255, 255, 255)',
+    },
   };
   const barChartOptions = {
     showLines: false,
@@ -85,8 +91,8 @@ export default function CustomExpansionPanels({
           </Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails className={classes.beautifyBackground} align="center">
-          <HorizontalBar
-            styles={{ color: 'white !important' }}
+          <Doughnut
+            styles={{ background: '#f7d2ff' }}
             legend={barLegendOpts}
             options={barChartOptions}
             data={formatCommitsToPieData(commits)}

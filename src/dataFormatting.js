@@ -12,7 +12,7 @@ export function formatCommitsToPieData(commits) {
   };
 
   const userCounts = {};
-  let defaultSeed = 'tonymakis';
+  let defaultSeed = 'chappie';
 
   for (let i = 0; i < commits.length; i += 1) {
     userCounts[commits[i].user] = 1 + (userCounts[commits[i].user] || 0);
