@@ -1,20 +1,20 @@
 import React from 'react';
 
-import { useLoading, Puff } from '@agney/react-loading';
+import { useLoading, Circles } from '@agney/react-loading';
 
 export default function LoadSpinner() {
-    const { containerProps, indicatorEl } = useLoading({
-        loading: true,
-        indicator: <Puff width="155" />,
-    });
+  const { containerProps, indicatorEl } = useLoading({
+    loading: true,
+    indicator: <Circles width="155" />,
+  });
 
-    return (
-        <section
-            className="central"
-            id="authLoadSpinner"
-            {...containerProps}
-        >
-            {indicatorEl}
-        </section>
-    );
+  return (
+    <section
+      id="authLoadSpinner"
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...containerProps}
+    >
+      {indicatorEl}
+    </section>
+  );
 }

@@ -17,7 +17,7 @@ import {
 
 import useStyles from './ProjectCardStyles';
 
-import CustomizedExpansionPanels from '../ExpansionPanelsComponent/CustomExpansionPanels';
+import Accordions from '../ExpansionPanelsComponent/Accordions';
 
 export default function ProjectCard({
   title, description, projectUrl, languagesUsed, contributors, commits, created,
@@ -93,7 +93,7 @@ export default function ProjectCard({
         image={imageUrl}
       /> */}
       {/* <TabPanelsGroup contributors={contributors} /> */}
-      <CustomizedExpansionPanels
+      <Accordions
         contributors={contributors}
         commits={commits}
         languagesUsed={languagesUsed}

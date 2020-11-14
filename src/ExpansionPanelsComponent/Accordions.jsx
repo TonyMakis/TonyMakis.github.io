@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import {
-  ExpansionPanel,
-  ExpansionPanelDetails,
-  ExpansionPanelSummary,
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
   Link,
   Typography,
 } from '@material-ui/core';
@@ -16,9 +16,9 @@ import CodeIcon from '@material-ui/icons/Code';
 
 import { Doughnut } from 'react-chartjs-2';
 import { formatCommitsToPieData, formatLangsImgData } from '../dataFormatting';
-import useStyles from './CustomExpansionPanelsStyles';
+import useStyles from './AccordionStyles';
 
-export default function CustomExpansionPanels({
+export default function Accordions({
   contributors,
   commits,
   languagesUsed,
@@ -38,12 +38,12 @@ export default function CustomExpansionPanels({
 
   return (
     <div className={classes.root}>
-      <ExpansionPanel
+      <Accordion
         className={classes.beautifyBackground}
         expanded={expanded === 'panel1'}
         onChange={handleChange('panel1')}
       >
-        <ExpansionPanelSummary
+        <AccordionSummary
           expandIcon={<ExpandMoreIcon style={{ color: 'white' }} />}
           aria-controls="panel1bh-content"
           id="panel1bh-header"
@@ -52,8 +52,8 @@ export default function CustomExpansionPanels({
           <Typography className={classes.secondaryHeading}>
             <strong>Contributors</strong>
           </Typography>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails className={classes.beautifyBackground} align="left">
+        </AccordionSummary>
+        <AccordionDetails className={classes.beautifyBackground} align="left">
           <ul>
             {contributors.map((contrib) => (
               <li key={contrib.id}>
@@ -67,14 +67,14 @@ export default function CustomExpansionPanels({
               </li>
             )) || 'No contributors found!'}
           </ul>
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
-      <ExpansionPanel
+        </AccordionDetails>
+      </Accordion>
+      <Accordion
         className={classes.beautifyBackground}
         expanded={expanded === 'panel2'}
         onChange={handleChange('panel2')}
       >
-        <ExpansionPanelSummary
+        <AccordionSummary
           expandIcon={<ExpandMoreIcon style={{ color: 'white' }} />}
           aria-controls="panel2bh-content"
           id="panel2bh-header"
@@ -83,22 +83,22 @@ export default function CustomExpansionPanels({
           <Typography className={classes.secondaryHeading}>
             <strong>Commit Info</strong>
           </Typography>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails className={classes.beautifyBackground} align="center">
+        </AccordionSummary>
+        <AccordionDetails className={classes.beautifyBackground} align="center">
           <Doughnut
             styles={{ background: '#f7d2ff' }}
             legend={barLegendOpts}
             options={barChartOptions}
             data={formatCommitsToPieData(commits)}
           />
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
-      <ExpansionPanel
+        </AccordionDetails>
+      </Accordion>
+      <Accordion
         className={classes.beautifyBackground}
         expanded={expanded === 'panel3'}
         onChange={handleChange('panel3')}
       >
-        <ExpansionPanelSummary
+        <AccordionSummary
           expandIcon={<ExpandMoreIcon style={{ color: 'white' }} />}
           aria-controls="panel3bh-content"
           id="panel3bh-header"
@@ -107,26 +107,26 @@ export default function CustomExpansionPanels({
           <Typography className={classes.secondaryHeading}>
             <strong>Dev. Languages</strong>
           </Typography>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails className={classes.beautifyBackground} align="left">
+        </AccordionSummary>
+        <AccordionDetails className={classes.beautifyBackground} align="left">
           <Typography>
             {formatLangsImgData(languagesUsed).map((langUrl) => (
               <img className={classes.langBadge} alt={langUrl} src={langUrl} />
             ))}
           </Typography>
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
+        </AccordionDetails>
+      </Accordion>
     </div>
   );
 }
 
-CustomExpansionPanels.propTypes = {
+Accordions.propTypes = {
   contributors: PropTypes.arrayOf(PropTypes.object),
   commits: PropTypes.arrayOf(PropTypes.object),
   languagesUsed: PropTypes.arrayOf(PropTypes.object),
 };
 
-CustomExpansionPanels.defaultProps = {
+Accordions.defaultProps = {
   contributors: [],
   commits: [],
   languagesUsed: [],
