@@ -8,6 +8,7 @@ import fetchExtras from './dataFetchFunctions';
 
 export default function App() {
   const [projectData, setProjectData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchProjects = async (url) => fetch(url)
