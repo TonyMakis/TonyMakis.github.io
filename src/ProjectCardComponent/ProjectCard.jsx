@@ -33,7 +33,7 @@ export default function ProjectCard({
           className={classes.fancyTitle}
           gutterBottom
         >
-          {title || 'Title TBD . . .'}
+          {title || 'Title TBA . . .'}
         </Typography>
         <Paper elevation={3} className={classes.paperBack}>
           <Typography>

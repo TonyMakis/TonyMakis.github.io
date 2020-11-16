@@ -15,14 +15,11 @@ import TrackChangesIcon from '@material-ui/icons/TrackChanges';
 import CodeIcon from '@material-ui/icons/Code';
 
 import { Doughnut } from 'react-chartjs-2';
+
 import { formatCommitsToPieData, formatLangsImgData } from '../dataFormatting';
 import useStyles from './AccordionStyles';
 
-export default function Accordions({
-  contributors,
-  commits,
-  languagesUsed,
-}) {
+export default function Accordions({ contributors, commits, languagesUsed }) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   const barLegendOpts = {
@@ -111,7 +108,7 @@ export default function Accordions({
         <AccordionDetails className={classes.beautifyBackground} align="left">
           <Typography>
             {formatLangsImgData(languagesUsed).map((langUrl) => (
-              <img className={classes.langBadge} alt={langUrl} src={langUrl} />
+              <img className={classes.langBadge} alt={langUrl} src={langUrl} key={langUrl} />
             ))}
           </Typography>
         </AccordionDetails>

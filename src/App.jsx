@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
+// import Skeleton from '@material-ui/lab/Skeleton';
 
 import ProjectCard from './ProjectCardComponent/ProjectCard';
 
@@ -29,7 +30,7 @@ export default function App() {
   []);
 
   let content;
-
+  console.log(isLoading);
   if (isLoading) {
     content = (<div className="center"><LoadSpinner /></div>);
   } else {
