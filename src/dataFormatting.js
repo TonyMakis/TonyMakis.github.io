@@ -33,9 +33,12 @@ export function formatCommitsToPieData(commits) {
 }
 
 export function formatLangsImgData(langs) {
-  const langsUrls = [];
+  const langNames = [];
   for (const k of Object.keys(langs[0])) {
-    langsUrls.push(`https://img.icons8.com/${k.toLowerCase()}`);
+    langNames.push(k);
   }
-  return langsUrls;
+  if (Array.isArray(langNames) && !langNames.length) {
+    langNames.push('Empty');
+  }
+  return langNames;
 }

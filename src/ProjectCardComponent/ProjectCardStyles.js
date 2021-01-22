@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 // eslint-disable-next-line no-unused-vars
-let useStyles;
-export default useStyles = makeStyles({
+
+const useStyles = makeStyles({
   card: {
     flexGrow: 1,
     backgroundColor: '#f7d2ff',
@@ -41,3 +41,5 @@ export default useStyles = makeStyles({
     fontSize: '0.8em',
   },
 });
+
+export default useStyles;

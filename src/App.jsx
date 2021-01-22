@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
+
 import Grid from '@material-ui/core/Grid';
-// import Skeleton from '@material-ui/lab/Skeleton';
 
 import ProjectCard from './ProjectCardComponent/ProjectCard';
 
@@ -21,7 +21,7 @@ export default function App() {
       //    git commit, contributors, and languages data it links
       // .then((res) => setProjectData(res));
       .then((res) => fetchExtras(res)
-      .then((data) => setProjectData(data)))
+        .then((data) => setProjectData(data)))
       .then(setLoading(false));
 
     fetchProjects('https://api.github.com/users/TonyMakis/repos');
@@ -30,7 +30,6 @@ export default function App() {
   []);
 
   let content;
-  console.log(isLoading);
   if (isLoading) {
     content = (<div className="center"><LoadSpinner /></div>);
   } else {

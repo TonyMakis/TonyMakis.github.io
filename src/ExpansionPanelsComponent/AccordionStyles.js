@@ -1,7 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 // eslint-disable-next-line no-unused-vars
-let useStyles;
-export default useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     marginLeft: 'auto',
     marginRight: 'auto',
@@ -35,3 +34,5 @@ export default useStyles = makeStyles((theme) => ({
     color: 'white',
   },
 }));
+
+export default useStyles;

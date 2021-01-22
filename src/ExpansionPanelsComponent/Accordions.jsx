@@ -16,6 +16,8 @@ import CodeIcon from '@material-ui/icons/Code';
 
 import { Doughnut } from 'react-chartjs-2';
 
+import LanguageIcon from './LanguageIcon';
+
 import { formatCommitsToPieData, formatLangsImgData } from '../dataFormatting';
 import useStyles from './AccordionStyles';
 
@@ -106,11 +108,9 @@ export default function Accordions({ contributors, commits, languagesUsed }) {
           </Typography>
         </AccordionSummary>
         <AccordionDetails className={classes.beautifyBackground} align="left">
-          <Typography>
-            {formatLangsImgData(languagesUsed).map((langUrl) => (
-              <img className={classes.langBadge} alt={langUrl} src={langUrl} key={langUrl} />
-            ))}
-          </Typography>
+          {formatLangsImgData(languagesUsed).map((lang) => (
+            <LanguageIcon lang={lang} key={lang} />
+          ))}
         </AccordionDetails>
       </Accordion>
     </div>
