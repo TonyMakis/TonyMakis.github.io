@@ -39,3 +39,10 @@ center {
   justify-content: center;
   align-items: center;
 }
+
+#LoadSpinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}

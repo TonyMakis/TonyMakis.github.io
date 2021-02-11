@@ -73,7 +73,11 @@ export default function ProjectCard({
                 SOURCE
               </Button>
               <Button
-                href={`https://TonyMakis.github.io/${title}`}
+                href={
+                  title === 'PrettyPlaylister'
+                    ? 'https://www.prettyplaylister.com'
+                    : `https://TonyMakis.github.io/${title}`
+                }
                 target="_blank"
                 variant="contained"
                 color="primary"
