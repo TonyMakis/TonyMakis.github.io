@@ -7,10 +7,6 @@ const nextConfig = {
   },
   assetPrefix: process.env.NODE_ENV === 'production' ? '/TonyMakis.github.io' : '',
   basePath: process.env.NODE_ENV === 'production' ? '/TonyMakis.github.io' : '',
-  distDir: 'out',
-  generateBuildId: async () => {
-    return 'build-' + Date.now()
-  }
 }
 
 module.exports = nextConfig
