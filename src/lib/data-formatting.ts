@@ -1,17 +1,16 @@
 import randomColor from 'randomcolor';
 
-/* eslint-disable no-restricted-syntax */
-export function formatCommitsToPieData(commits) {
+export function formatCommitsToPieData(commits: Array<{ id: string; user: string }>) {
   const commitData = {
-    labels: [],
+    labels: [] as string[],
     datasets: [{
-      data: [],
-      backgroundColor: [],
-      hoverBackgroundColor: [],
+      data: [] as number[],
+      backgroundColor: [] as string[],
+      hoverBackgroundColor: [] as string[],
     }],
   };
 
-  const userCounts = {};
+  const userCounts: Record<string, number> = {};
   let defaultSeed = 'chappie';
 
   for (let i = 0; i < commits.length; i += 1) {
@@ -20,9 +19,7 @@ export function formatCommitsToPieData(commits) {
 
   for (const [k, v] of Object.entries(userCounts)) {
     defaultSeed = `${defaultSeed}!`;
-    const randColorGenerated = randomColor(
-      { seed: defaultSeed },
-    );
+    const randColorGenerated = randomColor({ seed: defaultSeed });
     commitData.labels.push(k);
     commitData.datasets[0].data.push(v);
     commitData.datasets[0].backgroundColor.push(randColorGenerated);
@@ -32,13 +29,10 @@ export function formatCommitsToPieData(commits) {
   return commitData;
 }
 
-export function formatLangsImgData(langs) {
-  const langNames = [];
-  for (const k of Object.keys(langs[0])) {
-    langNames.push(k);
-  }
-  if (Array.isArray(langNames) && !langNames.length) {
-    langNames.push('Empty');
+export function formatLangsImgData(langs: Record<string, number>): string[] {
+  const langNames = Object.keys(langs);
+  if (langNames.length === 0) {
+    return ['Empty'];
   }
   return langNames;
 }

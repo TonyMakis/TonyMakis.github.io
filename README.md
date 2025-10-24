@@ -1,68 +1,90 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Tony Makis Portfolio
+
+A modern, neobrutalism-styled portfolio website built with Next.js, TypeScript, and shadcn/ui components. This site fetches and displays GitHub repository information in a bold, colorful design.
+
+## Features
+
+- 🎨 **Neobrutalism Design**: Bold colors, thick borders, and sharp shadows
+- ⚡ **Next.js 14**: Latest React framework with App Router
+- 🎯 **TypeScript**: Full type safety throughout the application
+- 🧩 **shadcn/ui**: Modern, accessible UI components
+- 📊 **Interactive Charts**: Commit data visualization with Chart.js
+- 🎨 **Tailwind CSS**: Utility-first CSS framework
+- 📱 **Responsive Design**: Works on all device sizes
+
+## Tech Stack
+
+- **Framework**: Next.js 14 with App Router
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS + Custom Neobrutalism Classes
+- **UI Components**: shadcn/ui + Radix UI primitives
+- **Charts**: Chart.js + react-chartjs-2
+- **Icons**: Lucide React
+- **Deployment**: GitHub Pages
+
+## Getting Started
+
+1. **Install dependencies**:
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+
+2. **Run the development server**:
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
+
+3. **Open your browser**:
+   Navigate to [http://localhost:3000](http://localhost:3000)
 
 ## Available Scripts
 
-In the project directory, you can run:
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
+- `npm run export` - Export static site for GitHub Pages
 
-### `npm start`
+## Project Structure
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```
+src/
+├── app/                    # Next.js App Router
+│   ├── globals.css        # Global styles with neobrutalism theme
+│   ├── layout.tsx         # Root layout component
+│   └── page.tsx          # Home page component
+├── components/            # React components
+│   ├── ui/               # shadcn/ui components
+│   ├── project-card.tsx  # Project card component
+│   └── project-accordions.tsx # Project details accordion
+└── lib/                  # Utility functions
+    ├── data-fetch.ts     # GitHub API integration
+    ├── data-formatting.ts # Data transformation utilities
+    └── utils.ts          # General utilities
+```
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Design System
 
-### `npm test`
+The site uses a custom neobrutalism design system with:
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Colors**: Bold gradients (purple → pink → red background)
+- **Cards**: White background with thick black borders
+- **Shadows**: Sharp, offset shadows (`shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]`)
+- **Typography**: Bold, uppercase headings with drop shadows
+- **Buttons**: Yellow accent with black borders and hover effects
 
-### `npm run build`
+## Deployment
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+This project is configured for GitHub Pages deployment:
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+1. Build the project: `npm run build`
+2. The static files are generated in the `out/` directory
+3. Deploy to GitHub Pages using the configured settings
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Contributing
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Feel free to submit issues and enhancement requests!
