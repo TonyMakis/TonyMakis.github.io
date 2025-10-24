@@ -5,7 +5,7 @@ const path = require('path');
 function moveCSSFiles() {
   const outDir = path.join(__dirname, 'out');
   const nextDir = path.join(outDir, '_next');
-  const staticDir = path.join(outDir, 'static');
+  const staticDir = path.join(outDir, 'assets');
   
   if (fs.existsSync(nextDir)) {
     // Create static directory if it doesn't exist
@@ -13,24 +13,19 @@ function moveCSSFiles() {
       fs.mkdirSync(staticDir, { recursive: true });
     }
     
-    // Move CSS files
+    // Move CSS files to root
     const cssDir = path.join(nextDir, 'static', 'css');
-    const newCssDir = path.join(staticDir, 'css');
     
     if (fs.existsSync(cssDir)) {
-      if (!fs.existsSync(newCssDir)) {
-        fs.mkdirSync(newCssDir, { recursive: true });
-      }
-      
       const files = fs.readdirSync(cssDir);
       files.forEach(file => {
         const srcPath = path.join(cssDir, file);
-        const destPath = path.join(newCssDir, file);
+        const destPath = path.join(outDir, file);
         const stat = fs.statSync(srcPath);
         
         if (stat.isFile()) {
           fs.copyFileSync(srcPath, destPath);
-          console.log(`Moved ${file} to static/css/`);
+          console.log(`Moved ${file} to root directory`);
         }
       });
     }

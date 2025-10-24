@@ -12,7 +12,7 @@ const nextConfig = {
   },
   webpack: (config, { isServer }) => {
     if (!isServer) {
-      config.output.publicPath = process.env.NODE_ENV === 'production' ? '/TonyMakis.github.io/static/' : '/_next/static/';
+      config.output.publicPath = process.env.NODE_ENV === 'production' ? '/TonyMakis.github.io/assets/' : '/_next/static/';
     }
     return config;
   },
