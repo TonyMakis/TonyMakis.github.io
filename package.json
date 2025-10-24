@@ -19,7 +19,7 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && node move-assets.js && node update-html.js",
     "start": "next start",
     "lint": "next lint",
     "export": "next build && next export"
