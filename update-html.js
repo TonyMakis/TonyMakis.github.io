@@ -30,7 +30,7 @@ function updateHTMLFiles() {
     let content = fs.readFileSync(file, 'utf8');
     
     // Replace _next/static/css with root CSS file
-    content = content.replace(/\/TonyMakis\.github\.io\/_next\/static\/css\/[^"]+\.css/g, '/TonyMakis.github.io/7910b7186afcabd4.css');
+    content = content.replace(/\/TonyMakis\.github\.io\/_next\/static\/css\/[^"]+\.css/g, '/TonyMakis.github.io/styles.css');
     
     fs.writeFileSync(file, content);
     console.log(`Updated ${path.relative(outDir, file)}`);
