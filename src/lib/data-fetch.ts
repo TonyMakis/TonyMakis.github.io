@@ -1,5 +1,3 @@
-import { useState, useEffect } from 'react';
-
 export interface Project {
   id: number;
   name: string;
@@ -24,9 +22,29 @@ export interface GitHubRepo {
 
 async function fetchAll(urls: string[]) {
   if (urls.length === 0) return [];
-  return Promise.all(
-    urls.map((url) => fetch(url).then((res) => res.json()))
-  );
+  
+  try {
+    return Promise.all(
+      urls.map(async (url) => {
+        const res = await fetch(url, {
+          headers: {
+            'Accept': 'application/vnd.github.v3+json',
+            'User-Agent': 'TonyMakis-Portfolio'
+          }
+        });
+        
+        if (!res.ok) {
+          console.warn(`Failed to fetch ${url}: ${res.status}`);
+          return [];
+        }
+        
+        return res.json();
+      })
+    );
+  } catch (error) {
+    console.error('Error in fetchAll:', error);
+    return [];
+  }
 }
 
 function parseContribsIntoData(data: GitHubRepo[], con: any[]) {
@@ -93,31 +111,22 @@ export async function fetchExtras(data: GitHubRepo[]): Promise<Project[]> {
 }
 
 export async function fetchProjects(): Promise<Project[]> {
-  const res = await fetch('https://api.github.com/users/TonyMakis/repos');
-  const data: GitHubRepo[] = await res.json();
-  return fetchExtras(data);
-}
-
-export function useProjects() {
-  const [projects, setProjects] = useState<Project[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const loadProjects = async () => {
-      try {
-        setIsLoading(true);
-        const data = await fetchProjects();
-        setProjects(data);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'Failed to fetch projects');
-      } finally {
-        setIsLoading(false);
+  try {
+    const res = await fetch('https://api.github.com/users/TonyMakis/repos', {
+      headers: {
+        'Accept': 'application/vnd.github.v3+json',
+        'User-Agent': 'TonyMakis-Portfolio'
       }
-    };
-
-    loadProjects();
-  }, []);
-
-  return { projects, isLoading, error };
+    });
+    
+    if (!res.ok) {
+      throw new Error(`GitHub API error: ${res.status} ${res.statusText}`);
+    }
+    
+    const data: GitHubRepo[] = await res.json();
+    return fetchExtras(data);
+  } catch (error) {
+    console.error('Error fetching projects:', error);
+    throw error;
+  }
 }

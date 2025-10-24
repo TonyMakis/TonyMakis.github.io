@@ -1,27 +1,31 @@
-"use client"
-
-import { useProjects } from "@/lib/data-fetch"
+import { fetchProjects, Project } from "@/lib/data-fetch"
 import { LoadSpinner } from "@/components/ui/load-spinner"
 import { ProjectCard } from "@/components/project-card"
 
-export default function HomePage() {
-  const { projects, isLoading, error } = useProjects()
+export default async function HomePage() {
+  let projects: Project[] = [];
+  let error: string | null = null;
 
-  if (isLoading) {
-    return (
-      <div className="bg-red-500 text-white p-8">
-        <h1 className="text-4xl font-bold">Loading...</h1>
-        <LoadSpinner size="lg" />
-      </div>
-    )
+  try {
+    projects = await fetchProjects();
+  } catch (err) {
+    error = err instanceof Error ? err.message : 'Failed to fetch projects';
+    console.error('Error fetching projects:', err);
+    
+    // Fallback: show a message instead of crashing
+    projects = [];
   }
 
   if (error) {
     return (
       <div className="neobrutalism-background flex items-center justify-center">
         <div className="neobrutalism-card p-8 max-w-md mx-4">
-          <h1 className="neobrutalism-text text-2xl mb-4">Error Loading Projects</h1>
-          <p className="text-red-600 font-bold">{error}</p>
+          <h1 className="neobrutalism-text text-2xl mb-4">Unable to Load Projects</h1>
+          <p className="text-red-600 font-bold mb-4">{error}</p>
+          <p className="text-sm text-gray-600">
+            This might be due to GitHub API rate limits or network issues. 
+            Please try refreshing the page or check back later.
+          </p>
         </div>
       </div>
     )
